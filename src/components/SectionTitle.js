@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { StatisticTitleSection } from './App.styled';
 
 
@@ -8,4 +9,8 @@ export const SectionTitle = ({ title, children }) => {
             {children}</StatisticTitleSection>
 
     )
+};
+
+SectionTitle.propTypes = {
+  title: PropTypes.string.isRequired,
 };
