@@ -15,6 +15,7 @@ export class App extends Component {
   handleFeedbackClick = type => (this.setState(prevState => ({ [type]: prevState[type] + 1, })));
 
   countTotalFeedback = () => {
+    
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   };
@@ -46,13 +47,14 @@ export class App extends Component {
         </SectionTitle>
 
         <SectionTitle title="Statistics">
-          {this.countTotalFeedback() > 0 ? (
+
+          {this.countTotalFeedback() ? (
             <Statistics
                good={this.state.good}
                neutral={this.state.neutral}
                bad={this.state.bad}
-               total={this.countTotalFeedback()}
-               positivePercentage={this.handleFeedbackClick()}
+               total={this.countTotalFeedback}
+               positivePercentage={this.handleFeedbackClick}
           />) : (<p>There is no feedback</p>)}
         </SectionTitle>
       </div>
