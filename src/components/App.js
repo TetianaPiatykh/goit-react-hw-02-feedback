@@ -15,19 +15,17 @@ export class App extends Component {
   handleFeedbackClick = type => (this.setState(prevState => ({ [type]: prevState[type] + 1, })));
 
   countTotalFeedback = () => {
-    
-    const { good, neutral, bad } = this.state;
-    return good + neutral + bad;
+    return this.state.good + this.state.neutral + this.state.bad;
   };
 
-  countPositiveFeedbackPercentage = () => {
-
-    return Math.round((this.state.good * 100) / this.countTotalFeedback());
-
+   countPositiveFeedbackPercentage = () => {
+return Math.round((this.state.good * 100) / this.countTotalFeedback());
   };
 
   render() {
-    // const { good, neutral, bad } = this.state;
+
+    const { good, neutral, bad } = this.state;
+
     return (
       <div
         style={{
@@ -47,17 +45,26 @@ export class App extends Component {
         </SectionTitle>
 
         <SectionTitle title="Statistics">
-
           {this.countTotalFeedback() ? (
             <Statistics
-               good={this.state.good}
-               neutral={this.state.neutral}
-               bad={this.state.bad}
-               total={this.countTotalFeedback}
-               positivePercentage={this.handleFeedbackClick}
-          />) : (<p>There is no feedback</p>)}
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                total={this.countTotalFeedback}
+                positivePercentage={this.countPositiveFeedbackPercentage}
+          />) : ( <p>There is no feedback</p> )}
         </SectionTitle>
       </div>
     )
   }
 };
+
+    // const totalFeedback = this.countTotalFeedback();
+    // const goodValue = this.state.good;
+    // let positivFeedback = 0;
+
+    // if (totalFeedback > 0) {
+    //   positivFeedback = Math.round((goodValue / totalFeedback) *  100 );
+    // }
+    // console.log(positivFeedback);
+    // return positivFeedback;
